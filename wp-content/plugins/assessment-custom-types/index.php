@@ -31,7 +31,8 @@ function register_product_cpt() {
         'label' => 'Products', 
         'labels' => $labels,
         'public' => true, 
-        'capability_type' => 'post'
+		'capability_type' => 'post',
+		'show_in_rest' => true
     );
 
     register_post_type( 'product', $args);
@@ -61,7 +62,8 @@ function register_brand_cpt() {
 		'supports'            => array( 'title', 'thumbnail', 'page-attributes'),
 		'public'              => true,
 		'hierarchical'        => true,
-		'capability_type'     => 'page'
+		'capability_type'     => 'page',
+		'show_in_rest' => true
 );
 	register_post_type( 'brand', $args );
 }
@@ -87,7 +89,8 @@ function register_product_category_taxonomy() {
     'labels' => $labels,
     'show_ui' => true,
     'show_admin_column' => true,
-    'rewrite' => array( 'slug' => 'product-categories'),
+	'rewrite' => array( 'slug' => 'product-categories'),
+	'show_in_rest' => true,
   ));
 }
 ?>
