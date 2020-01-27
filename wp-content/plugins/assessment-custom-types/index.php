@@ -35,7 +35,13 @@ function register_product_cpt() {
 		'show_in_rest' => true
     );
 
-    register_post_type( 'product', $args);
+	register_post_type( 'product', $args);
+
+	/*add_rewrite_rule( 
+        '^product/([^/]+)/?$',
+        'index.php?post_type=product&name=$matches[1]',
+        'top'
+    );*/
 }
 
 add_action('init','register_brand_cpt');
@@ -93,4 +99,33 @@ function register_product_category_taxonomy() {
 	'show_in_rest' => true,
   ));
 }
+
+//Define custom permalink for products 
+//domain.com/brand-slug(s)/product-slug
+/*add_filter('post_type_link', 'product_type_permalink', 10, 2);
+function product_type_permalink($post_link, $post) {
+    if ($post->post_type == 'product') {
+		$newSlug = '';
+		global $post;
+
+		$brandId = get_post_meta( $post->ID, 'brand', true );
+		
+		while($brandId != 0) {
+			$brandName =  get_post_field( 'post_name', $brandId );
+			
+			$newSlug = $newSlug . '/'. $brandName;
+
+			$brandId = wp_get_post_parent_id( $brandId );
+		}
+
+		$newSlug = $newSlug . '/' . $post->post_name;
+		
+		$domain = explode('/product', $post_link)[0];
+
+		//$permalink = $domain . '/' . $newSlug;
+	}
+
+	return $permalink;
+}*/
+
 ?>
