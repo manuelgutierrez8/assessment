@@ -32,7 +32,8 @@ function register_product_cpt() {
         'labels' => $labels,
         'public' => true, 
 		'capability_type' => 'post',
-		'show_in_rest' => true
+		'show_in_rest' => true,
+		'has_archive' => true,
     );
 
 	register_post_type( 'product', $args);

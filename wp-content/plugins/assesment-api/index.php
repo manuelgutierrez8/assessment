@@ -135,6 +135,8 @@ function getPostFields($post) {
     $post_info['slug'] = $post->post_name;
     $post_info['rating'] = get_post_meta( $post->ID, 'rating', true );
     $post_info['featured'] = get_post_meta( $post->ID, 'featured', true ) != null;
+    $post_info['featured_media'] = get_post_meta( $post->ID, 'featured_media', true );
+    $post_info['link'] = get_permalink( $post->ID );
     
     //Category
     $post_info['category'] = [];        
